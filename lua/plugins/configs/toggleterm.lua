@@ -26,7 +26,8 @@ local function set_toggleterm_keymaps()
   vim.api.nvim_set_keymap('n', '<Leader>gg', '<Cmd>lua _G.toggle_lazygit()<CR>', opts)
   vim.api.nvim_set_keymap('n', '<Leader>tn', '<Cmd>lua _G.toggle_node()<CR>', opts)
   vim.api.nvim_set_keymap('n', '<Leader>tu', '<Cmd>lua _G.toggle_gdu()<CR>', opts)
-  vim.api.nvim_set_keymap('n', '<Leader>tt', '<Cmd>lua _G.toggle_btm()<CR>', opts)
+  -- golang sandbok
+  vim.api.nvim_set_keymap('n', '<Leader>tg', '<Cmd>lua _G.toggle_golang()<CR>', opts)
   vim.api.nvim_set_keymap('n', '<Leader>tp', '<Cmd>lua _G.toggle_python()<CR>', opts)
   vim.api.nvim_set_keymap('n', '<Leader>tf', '<Cmd>ToggleTerm direction=float<CR>', opts)
   vim.api.nvim_set_keymap('n', '<Leader>th', '<Cmd>ToggleTerm size=10 direction=horizontal<CR>', opts)
@@ -46,6 +47,16 @@ _G.toggle_lazygit = function()
     lazygit:toggle()
   else
     print 'LazyGit not found!'
+  end
+end
+
+_G.toggle_golang = function()
+  if vim.fn.executable 'go' == 1 then
+    local Terminal = require('toggleterm.terminal').Terminal
+    local golang = Terminal:new { cmd = 'go', hidden = true }
+    golang:toggle()
+  else
+    print 'Go not found!'
   end
 end
 
@@ -70,16 +81,6 @@ _G.toggle_gdu = function()
     gdu_term:toggle()
   else
     print(gdu .. ' not found!')
-  end
-end
-
-_G.toggle_btm = function()
-  if vim.fn.executable 'btm' == 1 then
-    local Terminal = require('toggleterm.terminal').Terminal
-    local btm = Terminal:new { cmd = 'btm', hidden = true }
-    btm:toggle()
-  else
-    print 'btm not found!'
   end
 end
 
