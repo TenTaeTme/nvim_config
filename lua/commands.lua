@@ -1,0 +1,58 @@
+vim.api.nvim_create_user_command('MasonInstallAll', function()
+  vim.cmd [[MasonInstall
+    lua-language-server
+    tsserver
+    intelephense
+    tailwindcss-language-server
+    css-lsp
+    html-lsp
+    typescript-language-server
+    stylua
+    prettier
+    gopls
+    golangci-lint
+    dockerfile-language-server
+    docker-compose-language-service
+    iferr
+  ]]
+end, {})
+
+vim.api.nvim_create_augroup('neotree', {})
+vim.api.nvim_create_autocmd('UiEnter', {
+  desc = 'Open Neotree automatically',
+  group = 'neotree',
+  callback = function()
+    if vim.fn.argc() == 0 then
+      vim.cmd 'Neotree toggle'
+    end
+  end,
+})
+
+-- Format on save
+local augroup = vim.api.nvim_create_augroup('ConformFormatting', {})
+vim.api.nvim_create_autocmd('BufWritePre', {
+  group = augroup,
+  callback = function()
+    require('conform').format()
+  end,
+})
+
+-- Set filetype to php.html for .php files on buffer read and new file creation
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = '*.php',
+  callback = function()
+    vim.bo.filetype = 'php.html'
+  end,
+})
+vim.g.copilot_no_tab_map = true
+vim.api.nvim_set_keymap('i', '<C-t>', 'copilot#Accept("<CR>")', { silent = true, expr = true })
+-- Assuming the Lua module is named 'curl_command_runner.lua' and stored in '~/.config/nvim/lua/'
+vim.api.nvim_set_keymap('n', '<C-c>', '<cmd>lua require("curl_command_runner").run_curl_command()<CR>', { noremap = true, silent = true })
+--store cursor position
+vim.api.nvim_create_augroup('userconfig', {})
+vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
+  group = 'userconfig',
+  desc = 'return cursor to where it was last time closing the file',
+  pattern = '*',
+  command = 'silent! normal! g`"zv',
+})
