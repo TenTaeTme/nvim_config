@@ -43,7 +43,14 @@ end
 _G.toggle_lazygit = function()
   if vim.fn.executable 'lazygit' == 1 then
     local Terminal = require('toggleterm.terminal').Terminal
-    local lazygit = Terminal:new { cmd = 'lazygit', hidden = true, direction = 'float' }
+    local lazygit = Terminal:new {
+      cmd = 'lazygit',
+      hidden = true,
+      direction = 'float',
+      on_exit = function(_, _, _)
+        vim.cmd 'checktime' -- Reload current buffer
+      end,
+    }
     lazygit:toggle()
   else
     print 'LazyGit not found!'
