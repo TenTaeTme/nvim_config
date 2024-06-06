@@ -196,6 +196,17 @@ local plugins = {
     'fatih/vim-go',
     event = 'VeryLazy',
     autoStart = true,
+    config = function()
+      -- vim.g.go_highlight_methods = 0
+      -- vim.g.go_highlight_functions = 0
+      -- vim.g.go_highlight_function_calls = 0
+      -- vim.g.go_highlight_operators = 0
+      -- vim.g.go_highlight_types = 0
+      -- vim.g.go_highlight_build_constraints = 0
+      -- vim.g.go_highlight_generate_tags = 0
+      -- vim.g.go_highlight_format_strings = 0
+      -- vim.g.go_highlight_chan_whitespace_error = 0 -- Ensure this does not disable other highlighting
+    end,
   },
   {
     'andymass/vim-matchup',
@@ -312,6 +323,20 @@ local plugins = {
       cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
     end,
   },
+  -- {
+  --   'ray-x/go.nvim',
+  --   dependencies = { -- optional packages
+  --     'ray-x/guihua.lua',
+  --     'neovim/nvim-lspconfig',
+  --     'nvim-treesitter/nvim-treesitter',
+  --   },
+  --   config = function()
+  --     require('go').setup()
+  --   end,
+  --   event = { 'CmdlineEnter' },
+  --   ft = { 'go', 'gomod' },
+  --   build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
+  -- },
 }
 
 require('lazy').setup(plugins, require 'lazy_config')
