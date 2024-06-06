@@ -121,6 +121,12 @@ map('n', '<C-l>', '<C-w>l', { desc = 'Move to right window' })
 map('n', '<C-h>', '<C-w>h', { desc = 'Move to left window' })
 map('n', '<C-j>', '<C-w>j', { desc = 'Move to below window' })
 map('n', '<C-k>', '<C-w>k', { desc = 'Move to above window' })
+-- same for terminal and i
+map('t', '<C-l>', '<C-\\><C-n><C-w>l', { desc = 'Move to right window' })
+map('t', '<C-h>', '<C-\\><C-n><C-w>h', { desc = 'Move to left window' })
+map('t', '<C-j>', '<C-\\><C-n><C-w>j', { desc = 'Move to below window' })
+map('t', '<C-k>', '<C-\\><C-n><C-w>k', { desc = 'Move to above window' })
 
 -- Close window
 map('n', '<C-q>', '<cmd>q<CR>', { desc = 'Close window' })
+map('t', '<C-q>', '<C-\\><C-n><cmd>q<CR>', { desc = 'Close window' })
