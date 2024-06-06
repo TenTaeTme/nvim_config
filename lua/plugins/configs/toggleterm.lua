@@ -42,6 +42,8 @@ end
 
 _G.toggle_lazygit = function()
   if vim.fn.executable 'lazygit' == 1 then
+    --make full save before opening lazygit
+    vim.cmd 'silent wa!'
     local Terminal = require('toggleterm.terminal').Terminal
     local lazygit = Terminal:new {
       cmd = 'lazygit',
