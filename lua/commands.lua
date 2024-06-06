@@ -37,3 +37,7 @@ vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
   pattern = '*',
   command = 'silent! normal! g`"zv',
 })
+
+vim.api.nvim_create_user_command('MasonInstallAll', function()
+  vim.cmd 'MasonInstall css-lsp html-lsp lua-language-server typescript-language-server stylua prettier prettierd emmet-ls goimports gofumpt iferr'
+end, {})

@@ -5,6 +5,8 @@ conform.setup {
     lua = { 'stylua' },
     javascript = { 'prettier' },
     typescript = { 'prettier' },
+    typescriptreact = { 'prettier' },
+    jjavascriptreact = { 'prettier' },
     go = { 'goimports', 'gofmt' },
     ['_'] = { 'prettier' },
   },

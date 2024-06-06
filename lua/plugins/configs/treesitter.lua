@@ -25,6 +25,8 @@ require('nvim-treesitter.configs').setup {
     'scss',
     'tsx',
     'yaml',
+    -- 'vtsls',
+    -- 'eslint',
   },
 
   highlight = {

@@ -76,13 +76,13 @@ local plugins = {
       'rafamadriz/friendly-snippets',
 
       -- -- snippets engine
-      -- {
-      --   'L3MON4D3/LuaSnip',
-      --   config = function()
-      --     require('luasnip.loaders.from_vscode').lazy_load()
-      --   end,
-      -- },
-
+      {
+        'L3MON4D3/LuaSnip',
+        config = function()
+          require('luasnip.loaders.from_vscode').lazy_load()
+        end,
+      },
+      --
       -- autopairs , autocompletes ()[] etc
       {
         'windwp/nvim-autopairs',
@@ -118,11 +118,15 @@ local plugins = {
         ensure_installed = {
           'lua_ls',
           'tsserver',
+          -- 'ttags',
           'intelephense',
           'tailwindcss',
           'cssls',
           'html',
           'tsserver',
+          'jsonls',
+          -- 'prettierd',
+          -- 'prettier',
           'gopls',
         },
       }
