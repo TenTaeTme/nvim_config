@@ -29,6 +29,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', '<leader>lw', function()
       require('telescope.builtin').diagnostics {} -- For workspace/project
     end, opts)
+    -- Key mapping to show code actions (fixes) for diagnostics using Telescope
+    vim.keymap.set('n', '<leader>cf', function()
+      vim.lsp.buf.code_action()
+    end, opts)
+    vim.keymap.set('v', '<leader>cf', function()
+      vim.lsp.buf.range_code_action()
+    end, opts)
   end,
 })
 
