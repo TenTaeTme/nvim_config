@@ -99,12 +99,31 @@ local plugins = {
     end,
   },
 
+  -- Ensure you have 'williamboman/mason.nvim' and 'williamboman/mason-lspconfig.nvim' installed
   {
     'williamboman/mason.nvim',
     build = ':MasonUpdate',
     cmd = { 'Mason', 'MasonInstall' },
     config = function()
       require('mason').setup()
+    end,
+  },
+  {
+    'williamboman/mason-lspconfig.nvim',
+    after = 'mason.nvim',
+    config = function()
+      require('mason-lspconfig').setup {
+        ensure_installed = {
+          'lua_ls',
+          'tsserver',
+          'intelephense',
+          'tailwindcss',
+          'cssls',
+          'html',
+          'tsserver',
+          'gopls',
+        },
+      }
     end,
   },
 
@@ -282,43 +301,15 @@ local plugins = {
   {
     'windwp/nvim-autopairs',
     config = function(plugin, opts)
-      opts = vim.tbl_extend('force', {
-        check_ts = true,
-        ts_config = { java = false },
-        fast_wrap = {
-          map = '<M-e>',
-          chars = { '{', '[', '(', '"', "'" },
-          pattern = ([[ [%'%"%)%>%]%)%}%,] ]]):gsub('%s+', ''),
-          offset = 0,
-          end_key = '$',
-          keys = 'qwertyuiopzxcvbnmasdfghjkl',
-          check_comma = true,
-          highlight = 'PmenuSel',
-          highlight_grey = 'LineNr',
-        },
-      }, opts or {})
-
-      -- Load and setup nvim-autopairs with the given options
-      local npairs = require 'nvim-autopairs'
-      npairs.setup(opts)
-
-      -- Define custom rules and conditions
-      local Rule = require 'nvim-autopairs.rule'
-      local cond = require 'nvim-autopairs.conds'
-
-      npairs.add_rules {
-        Rule('$', '$', { 'tex', 'latex' })
-          :with_pair(cond.not_after_regex '%%')
-          :with_pair(cond.not_before_regex('xxx', 3))
-          :with_move(cond.none())
-          :with_del(cond.not_after_regex 'xx')
-          :with_cr(cond.none()),
+      require('nvim-autopairs').setup {
+        disable_filetype = { 'TelescopePrompt', 'vim' },
+        check_ts = true, -- Enable treesitter integration
       }
 
-      -- Disable autopairs for .vim files
-      npairs.add_rules {
-        Rule('a', 'a', '-vim'),
-      }
+      -- If you're using nvim-cmp, add the following lines to integrate nvim-autopairs with nvim-cmp
+      local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
+      local cmp = require 'cmp'
+      cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
     end,
   },
 }

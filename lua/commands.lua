@@ -1,22 +1,3 @@
-vim.api.nvim_create_user_command('MasonInstallAll', function()
-  vim.cmd [[MasonInstall
-    lua-language-server
-    tsserver
-    intelephense
-    tailwindcss-language-server
-    css-lsp
-    html-lsp
-    typescript-language-server
-    stylua
-    prettier
-    gopls
-    golangci-lint
-    dockerfile-language-server
-    docker-compose-language-service
-    iferr
-  ]]
-end, {})
-
 vim.api.nvim_create_augroup('neotree', {})
 vim.api.nvim_create_autocmd('UiEnter', {
   desc = 'Open Neotree automatically',
