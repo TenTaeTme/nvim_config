@@ -1,10 +1,21 @@
 local plugins = {
   { lazy = true, 'nvim-lua/plenary.nvim' },
 
+  --themes
   {
     'AstroNvim/astrotheme',
     priority = 1000,
     config = true,
+  },
+  {
+    'sainnhe/gruvbox-material',
+    priority = 1000,
+  },
+  {
+    'catppuccin/nvim',
+  },
+  {
+    'folke/tokyonight.nvim',
   },
 
   -- File tree setup

@@ -22,3 +22,6 @@ require 'plugins'
 require('highlight_yank').setup()
 
 vim.cmd 'colorscheme astrodark'
+-- vim.api.nvim_set_hl(0, 'Character', { fg = '#f5983a', ctermfg = 'green' })
+vim.cmd 'highlight Character ctermfg=green guifg=#f5983a'
+-- vim.cmd 'colorscheme gruvbox-material'

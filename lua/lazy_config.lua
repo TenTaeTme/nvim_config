@@ -1,3 +1,3 @@
 return {
-  install = { colorscheme = { 'astrodark' } },
+  -- install = { colorscheme = { 'astrodark' } },
 }
