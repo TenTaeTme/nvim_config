@@ -59,6 +59,54 @@ capabilities.textDocument.completion.completionItem = {
   },
 }
 
+-- Adding semantic tokens capability
+capabilities.textDocument.semanticTokens = {
+  dynamicRegistration = false,
+  tokenTypes = {
+    'namespace',
+    'type',
+    'class',
+    'enum',
+    'interface',
+    'struct',
+    'typeParameter',
+    'parameter',
+    'variable',
+    'property',
+    'enumMember',
+    'event',
+    'function',
+    'method',
+    'macro',
+    'keyword',
+    'modifier',
+    'comment',
+    'string',
+    'number',
+    'regexp',
+    'operator',
+  },
+  tokenModifiers = {
+    'declaration',
+    'definition',
+    'readonly',
+    'static',
+    'deprecated',
+    'abstract',
+    'async',
+    'modification',
+    'documentation',
+    'defaultLibrary',
+  },
+  formats = { 'relative' },
+  requests = {
+    range = true,
+    full = {
+      delta = true,
+    },
+  },
+}
+
 -- Setup language servers
 local lspconfig = require 'lspconfig'
 
@@ -78,3 +126,33 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
+
+-- Specific configuration for gopls
+lspconfig.gopls.setup {
+  capabilities = capabilities,
+  on_attach = function(client, bufnr)
+    -- Enable semantic tokens for gopls
+    if client.server_capabilities.semanticTokensProvider then
+      local augroup = vim.api.nvim_create_augroup('GoplsSemanticTokens', { clear = true })
+      vim.api.nvim_create_autocmd('TextChanged', {
+        group = augroup,
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.semantic_tokens_full()
+        end,
+      })
+      vim.lsp.buf.semantic_tokens_full()
+    end
+  end,
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+      diagnosticsDelay = '300ms',
+      matcher = 'Fuzzy',
+      semanticTokens = true,
+    },
+  },
+}
