@@ -41,5 +41,6 @@ vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
 vim.api.nvim_create_user_command('MasonInstallAll', function()
   vim.cmd 'MasonInstall css-lsp html-lsp lua-language-server typescript-language-server stylua prettier prettierd emmet-ls goimports gofumpt iferr'
 end, {})
--- highlight
---
+
+-- Map ESC to clear search highlights
+vim.api.nvim_set_keymap('n', '<ESC>', ':nohlsearch<CR><ESC>', { noremap = true, silent = true })
