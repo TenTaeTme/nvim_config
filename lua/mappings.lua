@@ -21,8 +21,6 @@ map('n', '<leader>fo', '<cmd>Telescope oldfiles<CR>')
 map('n', '<leader>fw', '<cmd>Telescope live_grep<CR>')
 map('n', '<leader>gt', '<cmd>Telescope git_status<CR>')
 
--- Bufferline, cycle buffers
-
 -- Comment.nvim
 map('n', '<leader>/', 'gcc', { remap = true })
 map('v', '<leader>/', 'gc', { remap = true })
@@ -73,13 +71,59 @@ map('n', '<Leader>Q', function()
 end, { desc = 'Save all, destroy session, and quit' })
 
 -- Bufferline
+-- Close a given buffer
+local function close_buffer()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local listed_buffers = vim.fn.getbufinfo { buflisted = 1 }
+
+  if #vim.fn.getbufinfo { buflisted = 1 } < 2 then
+    -- Open a new empty buffer if this is the last buffer
+    vim.cmd 'enew'
+    vim.cmd('bdelete ' .. bufnr)
+  else
+    -- Navigate to the next buffer and delete the current one
+    vim.cmd 'bnext' -- Navigate to the next buffer
+    vim.defer_fn(function()
+      vim.cmd 'bdelete #' -- Delete the previously active buffer
+    end, 1) -- Delay of 1ms
+  end
+end
+
 function close_all_buffers()
-  for _, e in ipairs(require('bufferline').get_elements().elements) do
+  -- Open a new empty buffer
+  vim.cmd 'enew'
+  -- Get the list of all buffers
+  local buffers = require('bufferline').get_elements().elements
+
+  -- Close each buffer except the new empty one
+  for _, e in ipairs(buffers) do
     vim.schedule(function()
       vim.cmd('bd ' .. e.id)
     end)
   end
 end
+
+-- Key mapping to close a single buffer
+map('n', '<Leader>bx', function()
+  close_buffer()
+end, { noremap = true, silent = false, desc = 'Close buffer' })
+map('n', '<C-x>', function()
+  close_buffer()
+end, { noremap = true, silent = false, desc = 'Close buffer' })
+
+map('n', '<Leader>bC', function()
+  close_all_buffers()
+end, { noremap = true, silent = false, desc = 'Close buffer' })
+
+-- Key mapping to close all buffers
+vim.api.nvim_set_keymap('n', '<Leader>ba', ':lua close_all_buffers()<CR>', { noremap = true, silent = true, desc = 'Close all buffers' })
+
+-- map('n', '<Leader>bx', function()
+--   vim.cmd 'bnext' -- Navigate to the next buffer
+--   vim.defer_fn(function()
+--     vim.cmd 'bdelete #' -- Delete the previously active buffer
+--   end, 1) -- Delay of 100ms
+-- end, { desc = 'Close buffer' })
 
 map('n', 'L', function()
   require('bufferline').cycle(1)
@@ -97,17 +141,17 @@ map('n', '<Leader>bc', function()
   require('bufferline').close_with_pick()
 end, { desc = 'Pick buffer to close' })
 
-map('n', '<Leader>bx', function()
-  vim.cmd 'bd'
-end, { desc = 'Close buffer' })
+-- map('n', '<Leader>bx', function()
+--   vim.cmd 'bd'
+-- end, { desc = 'Close buffer' })
 
 map('n', '<Leader>bc', function()
   require('bufferline').close_others()
 end, { desc = 'Close other buffers' })
 
-map('n', '<Leader>bC', function()
-  close_all_buffers()
-end, { desc = 'Close all buffers' })
+-- map('n', '<Leader>bC', function()
+--   close_all_buffers()
+-- end, { desc = 'Close all buffers' })
 -- Set Vim options
 vim.opt.relativenumber = true -- sets vim.opt.relativenumber vim.opt.number = true                 -- sets vim.opt.number
 vim.opt.spell = false -- sets vim.opt.spell
