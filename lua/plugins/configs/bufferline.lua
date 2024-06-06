@@ -1,8 +1,14 @@
-require("bufferline").setup {
+require('bufferline').setup {
   options = {
     themable = true,
     offsets = {
-      { filetype = "NvimTree", highlight = "NvimTreeNormal" },
+      {
+        filetype = 'neo-tree',
+        text = 'Project',
+        highlight = 'Directory',
+        text_align = 'left',
+        separator = true,
+      },
     },
   },
 }
