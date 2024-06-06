@@ -8,6 +8,12 @@ map('n', '<C-c>', '<cmd>%y+<CR>') -- copy whole file content
 
 -- Telescope
 map('n', '<leader>ff', '<cmd>Telescope find_files<CR>')
+map('n', '<leader>fF', function()
+  require('telescope.builtin').find_files { hidden = true, no_ignore = true }
+end, { desc = 'Find all files' })
+map('n', '<leader>fh', function()
+  require('telescope.builtin').help_tags()
+end, { desc = 'Find help' })
 map('n', '<leader>fc', function()
   require('telescope.builtin').grep_string()
 end, { desc = 'Find word under cursor' })

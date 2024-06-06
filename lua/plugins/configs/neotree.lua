@@ -1,10 +1,8 @@
 -- configs/neotree.lua
 
 -- Define key mappings
-vim.api.nvim_set_keymap('n', '<Leader>e', '<Cmd>Neotree toggle<CR>',
-  { noremap = true, silent = true, desc = 'Toggle Explorer' })
-vim.api.nvim_set_keymap('n', '<Leader>o', [[<Cmd>lua ToggleNeoTreeFocus()<CR>]],
-  { noremap = true, silent = true, desc = 'Toggle Explorer Focus' })
+vim.api.nvim_set_keymap('n', '<Leader>e', '<Cmd>Neotree toggle<CR>', { noremap = true, silent = true, desc = 'Toggle Explorer' })
+vim.api.nvim_set_keymap('n', '<Leader>o', [[<Cmd>lua ToggleNeoTreeFocus()<CR>]], { noremap = true, silent = true, desc = 'Toggle Explorer Focus' })
 
 local icons = {
   ActiveLSP = '',
@@ -127,8 +125,8 @@ vim.api.nvim_create_autocmd('TermClose', {
 
 local git_available = vim.fn.executable 'git' == 1
 local sources = {
-  { source = 'filesystem',  display_name = get_icon 'FolderClosed' .. ' File' },
-  { source = 'buffers',     display_name = get_icon 'DefaultFile' .. ' Bufs' },
+  { source = 'filesystem', display_name = get_icon 'FolderClosed' .. ' File' },
+  { source = 'buffers', display_name = get_icon 'DefaultFile' .. ' Bufs' },
   { source = 'diagnostics', display_name = get_icon 'Diagnostic' .. ' Diagnostic' },
 }
 
@@ -257,7 +255,7 @@ local neotree_config = {
   },
   filesystem = {
     follow_current_file = { enabled = true },
-    filtered_items = { hide_gitignored = git_available },
+    filtered_items = { hide_gitignored = git_available, hide_dotfiles = false, visible = true },
     hijack_netrw_behavior = 'open_current',
     use_libuv_file_watcher = vim.fn.has 'win32' ~= 1,
   },
