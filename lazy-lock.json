@@ -1,6 +1,7 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "0236521ea582747b58869cb72f70ccfa967d2e89" },
   "LuaSnip": { "branch": "master", "commit": "2b6860d15aaab01d3fb90859c0ba97f20ad7bc5f" },
+  "alpha-nvim": { "branch": "main", "commit": "41283fb402713fc8b327e60907f74e46166f4cfd" },
   "astrotheme": { "branch": "main", "commit": "2bcd030c93489a02aab6cff2288e49adb0c84fad" },
   "auto-session": { "branch": "main", "commit": "af2219b9fa99c1d7ac409bd9eac094c459d3f52d" },
   "bufferline.nvim": { "branch": "main", "commit": "99337f63f0a3c3ab9519f3d1da7618ca4f91cffe" },

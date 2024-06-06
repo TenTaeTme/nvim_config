@@ -204,6 +204,123 @@ local plugins = {
       }
     end,
   },
+
+  {
+    'goolord/alpha-nvim',
+    opts = function()
+      local alpha = require 'alpha'
+      local dashboard = require 'alpha.themes.dashboard'
+
+      -- Set the header
+      dashboard.section.header.val = {
+        '███████╗██████╗ ██╗██╗  ██╗ ██╗██████╗        ██╗ ',
+        '██╔════╝██╔══██╗██║██║ ██╔╝███║╚════██╗    ██╗╚██',
+        '███████╗██████╔╝██║█████╔╝ ╚██║ █████╔╝    ╚═╝ ██║',
+        '╚════██║██╔═══╝ ██║██╔═██╗  ██║ ╚═══██╗    ██╗ ██║',
+        '███████║██║     ██║██║  ██╗ ██║██████╔╝    ╚═╝██╔╝',
+        '╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝        ╚═╝ ',
+      }
+
+      -- Set the buttons
+      dashboard.section.buttons.val = {
+        dashboard.button('f', '  Find file', ':Telescope find_files <CR>'),
+        dashboard.button('e', '  New file', ':ene <BAR> startinsert <CR>'),
+        dashboard.button('p', '  Find project', ':Telescope projects <CR>'),
+        dashboard.button('r', '  Recently used files', ':Telescope oldfiles <CR>'),
+        dashboard.button('t', '  Find text', ':Telescope live_grep <CR>'),
+        dashboard.button('c', '  Configuration', ':e $MYVIMRC <CR>'),
+        dashboard.button('q', '  Quit Neovim', ':qa<CR>'),
+      }
+
+      -- Set the footer
+      dashboard.section.footer.val = {
+        'Neovim loaded in ' .. vim.fn.strftime '%Y-%m-%d %H:%M:%S',
+      }
+
+      -- Set the layout
+      dashboard.config.layout = {
+        { type = 'padding', val = vim.fn.max { 2, vim.fn.floor(vim.fn.winheight(0) * 0.2) } },
+        dashboard.section.header,
+        { type = 'padding', val = 5 },
+        dashboard.section.buttons,
+        { type = 'padding', val = 3 },
+        dashboard.section.footer,
+      }
+
+      return dashboard
+    end,
+    config = function(_, opts)
+      local alpha = require 'alpha'
+      alpha.setup(opts.config)
+
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'LazyVimStarted',
+        desc = 'Add Alpha dashboard footer',
+        once = true,
+        callback = function()
+          local stats = require('lazy').stats()
+          local ms = math.floor(stats.startuptime * 100 + 0.5) / 100
+          opts.section.footer.val = { 'Nvim loaded ' .. stats.loaded .. '/' .. stats.count .. ' plugins  in ' .. ms .. 'ms' }
+          pcall(vim.cmd.AlphaRedraw)
+        end,
+      })
+    end,
+  },
+  {
+    'L3MON4D3/LuaSnip',
+    config = function(plugin, opts)
+      -- add more custom luasnip configuration such as filetype extend or custom snippets
+      local luasnip = require 'luasnip'
+      luasnip.filetype_extend('javascript', { 'javascriptreact' })
+      luasnip.filetype_extend('typescript', { 'typescriptreact' })
+      -- load snippets paths
+      require('luasnip.loaders.from_vscode').lazy_load {
+        paths = { vim.fn.stdpath 'config' .. '/snippets' },
+      }
+    end,
+  },
+  {
+    'windwp/nvim-autopairs',
+    config = function(plugin, opts)
+      opts = vim.tbl_extend('force', {
+        check_ts = true,
+        ts_config = { java = false },
+        fast_wrap = {
+          map = '<M-e>',
+          chars = { '{', '[', '(', '"', "'" },
+          pattern = ([[ [%'%"%)%>%]%)%}%,] ]]):gsub('%s+', ''),
+          offset = 0,
+          end_key = '$',
+          keys = 'qwertyuiopzxcvbnmasdfghjkl',
+          check_comma = true,
+          highlight = 'PmenuSel',
+          highlight_grey = 'LineNr',
+        },
+      }, opts or {})
+
+      -- Load and setup nvim-autopairs with the given options
+      local npairs = require 'nvim-autopairs'
+      npairs.setup(opts)
+
+      -- Define custom rules and conditions
+      local Rule = require 'nvim-autopairs.rule'
+      local cond = require 'nvim-autopairs.conds'
+
+      npairs.add_rules {
+        Rule('$', '$', { 'tex', 'latex' })
+          :with_pair(cond.not_after_regex '%%')
+          :with_pair(cond.not_before_regex('xxx', 3))
+          :with_move(cond.none())
+          :with_del(cond.not_after_regex 'xx')
+          :with_cr(cond.none()),
+      }
+
+      -- Disable autopairs for .vim files
+      npairs.add_rules {
+        Rule('a', 'a', '-vim'),
+      }
+    end,
+  },
 }
 
 require('lazy').setup(plugins, require 'lazy_config')
