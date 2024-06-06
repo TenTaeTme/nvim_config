@@ -50,8 +50,10 @@ local plugins = {
 
   {
     'echasnovski/mini.statusline',
+    version = false,
+
     config = function()
-      require('mini.statusline').setup { set_vim_settings = false }
+      require 'plugins.configs.ministatusline'
     end,
   },
 
@@ -73,13 +75,13 @@ local plugins = {
       --list of default snippets
       'rafamadriz/friendly-snippets',
 
-      -- snippets engine
-      {
-        'L3MON4D3/LuaSnip',
-        config = function()
-          require('luasnip.loaders.from_vscode').lazy_load()
-        end,
-      },
+      -- -- snippets engine
+      -- {
+      --   'L3MON4D3/LuaSnip',
+      --   config = function()
+      --     require('luasnip.loaders.from_vscode').lazy_load()
+      --   end,
+      -- },
 
       -- autopairs , autocompletes ()[] etc
       {
@@ -151,7 +153,6 @@ local plugins = {
     },
     lazy = false,
   },
-
   -- indent lines
   {
     'lukas-reineke/indent-blankline.nvim',
