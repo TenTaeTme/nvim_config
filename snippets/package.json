@@ -8,6 +8,10 @@
       {
         "language": "typescriptreact",
         "path": "./reacttypescript.json"
+      },
+      {
+        "language": "go",
+        "path": "./go.json"
       }
     ]
   }
