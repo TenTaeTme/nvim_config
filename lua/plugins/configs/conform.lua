@@ -5,14 +5,18 @@ conform.setup {
     lua = { 'stylua' },
     javascript = { 'prettier' },
     typescript = { 'prettier' },
-    -- Add other specific formatters here
+    go = { 'goimports', 'gofmt' },
+    ['_'] = { 'prettier' },
   },
   format_on_save = {
     enabled = true,
-    timeout_ms = 1000,
+    timeout_ms = 300,
+  },
+  format_after_save = {
+    lsp_fallback = true,
   },
   -- Optionally set a default formatter
   default_formatters = {
-    'prettier', -- or any other formatter you want as a default
+    'prettier',
   },
 }

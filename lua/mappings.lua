@@ -8,6 +8,9 @@ map('n', '<C-c>', '<cmd>%y+<CR>') -- copy whole file content
 
 -- Telescope
 map('n', '<leader>ff', '<cmd>Telescope find_files<CR>')
+map('n', '<leader>fc', function()
+  require('telescope.builtin').grep_string()
+end, { desc = 'Find word under cursor' })
 map('n', '<leader>fo', '<cmd>Telescope oldfiles<CR>')
 map('n', '<leader>fw', '<cmd>Telescope live_grep<CR>')
 map('n', '<leader>gt', '<cmd>Telescope git_status<CR>')
