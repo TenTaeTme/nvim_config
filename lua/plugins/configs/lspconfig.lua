@@ -130,29 +130,61 @@ end
 -- Specific configuration for gopls
 lspconfig.gopls.setup {
   capabilities = capabilities,
-  on_attach = function(client, bufnr)
-    -- Enable semantic tokens for gopls
-    if client.server_capabilities.semanticTokensProvider then
-      local augroup = vim.api.nvim_create_augroup('GoplsSemanticTokens', { clear = true })
-      vim.api.nvim_create_autocmd('TextChanged', {
-        group = augroup,
-        buffer = bufnr,
-        callback = function()
-          vim.lsp.buf.semantic_tokens_full()
-        end,
-      })
-      vim.lsp.buf.semantic_tokens_full()
-    end
-  end,
+  -- on_attach = function(client, bufnr)
+  --   -- Enable semantic tokens for gopls
+  --   if client.server_capabilities.semanticTokensProvider then
+  --     local augroup = vim.api.nvim_create_augroup('GoplsSemanticTokens', { clear = true })
+  --     vim.api.nvim_create_autocmd('TextChanged', {
+  --       group = augroup,
+  --       buffer = bufnr,
+  --       callback = function()
+  --         vim.lsp.buf.semantic_tokens_full()
+  --       end,
+  --     })
+  --     vim.lsp.buf.semantic_tokens_full()
+  --   end
+  -- end,
   settings = {
     gopls = {
       analyses = {
+        ST1003 = true,
+        fieldalignment = false,
+        fillreturns = true,
+        nilness = true,
+        nonewvars = true,
+        shadow = true,
+        undeclaredname = true,
+        unreachable = true,
         unusedparams = true,
+        unusedwrite = true,
+        useany = true,
       },
-      staticcheck = true,
-      diagnosticsDelay = '300ms',
+      codelenses = {
+        gc_details = true, -- Show a code lens toggling the display of gc's choices.
+        generate = true, -- show the `go generate` lens.
+        regenerate_cgo = true,
+        test = true,
+        tidy = true,
+        upgrade_dependency = true,
+        vendor = true,
+      },
+      hints = {
+        assignVariableTypes = true,
+        compositeLiteralFields = true,
+        compositeLiteralTypes = true,
+        constantValues = true,
+        functionTypeParameters = true,
+        parameterNames = true,
+        rangeVariableTypes = true,
+      },
+      buildFlags = { '-tags', 'integration' },
+      completeUnimported = true,
+      diagnosticsDelay = '500ms',
       matcher = 'Fuzzy',
       semanticTokens = true,
+      staticcheck = true,
+      symbolMatcher = 'fuzzy',
+      usePlaceholders = true,
     },
   },
 }
