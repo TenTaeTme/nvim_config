@@ -1,6 +1,7 @@
 require('nvim-treesitter.configs').setup {
   ensure_installed = {
     'lua',
+    'c',
     'vim',
     'vimdoc',
     'html',
