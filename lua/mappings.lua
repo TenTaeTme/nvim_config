@@ -61,6 +61,9 @@ map('n', '<C-u>', '<C-u>zz', { desc = 'Up and center' })
 map('n', '<C-d>', '<C-d>zz', { desc = 'Down and center' })
 map('n', '<Leader>w', ':w!<CR>', { desc = 'Save File', silent = true })
 map('n', '<Leader>q', '::wall|qa!<CR>', { desc = 'Save all and quit' })
+map('n', '<leader>ft', '<cmd>TodoTelescope ketwords=TODO,FIX<cr>', { desc = 'Find todos' })
+
+-- :TodoTelescope keywords=TODO,FIX
 -- map('n', '<Leader>Q', ':wall<bar>SessionPurgeOrphaned<bar>qa!<CR>', { noremap = true, silent = true, desc = 'Save all, destroy session, and quit' })
 map('n', '<Leader>Q', function()
   vim.cmd 'noa'

@@ -376,6 +376,11 @@ local plugins = {
   --   ft = { 'go', 'gomod' },
   --   build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
   -- },
+  {
+    'folke/todo-comments.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = {},
+  },
 }
 
 require('lazy').setup(plugins, require 'lazy_config')
