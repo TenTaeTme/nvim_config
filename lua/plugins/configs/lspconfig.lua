@@ -25,6 +25,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
     vim.keymap.set('n', 'gl', vim.diagnostic.open_float, opts) -- Correct mapping for line diagnostics
+    vim.keymap.set('n', '<leader>gb', '<cmd>Gitsigns blame_line<cr>', opts)
     --list of all diagnostics
     -- Key mapping to show all diagnostics in the project using Telescope
     vim.keymap.set('n', '<leader>ld', function()
