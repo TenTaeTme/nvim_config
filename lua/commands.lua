@@ -28,8 +28,7 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
 vim.g.copilot_no_tab_map = true
 vim.api.nvim_set_keymap('i', '<C-t>', 'copilot#Accept("<CR>")', { silent = true, expr = true })
 -- Assuming the Lua module is named 'curl_command_runner.lua' and stored in '~/.config/nvim/lua/'
-vim.api.nvim_set_keymap('n', '<C-c>', '<cmd>lua require("curl_command_runner").run_curl_command()<CR>',
-  { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-c>', '<cmd>lua require("curl_command_runner").run_curl_command()<CR>', { noremap = true, silent = true })
 --store cursor position
 vim.api.nvim_create_augroup('userconfig', {})
 vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
@@ -40,7 +39,7 @@ vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
 })
 
 vim.api.nvim_create_user_command('MasonInstallAll', function()
-  vim.cmd 'MasonInstall css-lsp html-lsp lua-language-server typescript-language-server stylua prettier prettierd emmet-ls goimports gofumpt iferr'
+  vim.cmd 'MasonInstall css-lsp html-lsp lua-language-server typescript-language-server stylua prettier prettierd emmet-ls goimports gofumpt iferr delve docker-compose-language-service dockerfile-language-server eslint-lsp gopls gomodifytags hadolint impl intelephense js-debug-adapter json-lsp selene tailwindcss-language-server'
 end, {})
 
 -- Map ESC to clear search highlights
