@@ -62,7 +62,7 @@ Before proceeding with the installation, ensure that the following dependencies 
 - **Golang**:
   - **Ubuntu/Debian**:
     ```bash
-    sudo apt install golang
+    sudo apt install golang-go
     ```
   - **Arch Linux**:
     ```bash
