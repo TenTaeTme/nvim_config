@@ -45,6 +45,34 @@ Before proceeding with the installation, ensure that the following dependencies 
      brew install node
      ```
 
+- **C Compiler (Required for building certain Neovim plugins)**:
+  - **Ubuntu/Debian**:
+    ```bash
+    sudo apt install build-essential
+    ```
+  - **Arch Linux**:
+    ```bash
+    sudo pacman -S base-devel
+    ```
+  - **MacOS**:
+    ```bash
+    xcode-select --install
+    ```
+
+- **Golang**:
+  - **Ubuntu/Debian**:
+    ```bash
+    sudo apt install golang
+    ```
+  - **Arch Linux**:
+    ```bash
+    sudo pacman -S go
+    ```
+  - **MacOS**:
+    ```bash
+    brew install go
+    ```
+
 4. **Python3 (optional but recommended)**: Install Python 3 support for Neovim:
    - For Ubuntu/Debian:
      ```bash
@@ -100,3 +128,6 @@ Clone this repository into your Neovim configuration directory (`~/.config/nvim`
 
 ```bash
 git clone https://github.com/TenTaeTme/nvim_config.git ~/.config/nvim
+MasonInstallAll
+ ```
+
