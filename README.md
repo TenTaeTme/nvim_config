@@ -117,6 +117,11 @@ Before proceeding with the installation, ensure that the following dependencies 
     ```bash
     brew install lazygit
     ```
+- **unzip**:
+  - **Ubuntu/Debian**:
+```bash
+sudo apt install unzip
+ ```
 
 ## Installation Steps
 
