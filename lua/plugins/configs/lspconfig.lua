@@ -13,6 +13,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
     -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
     vim.keymap.set('n', 'gi', '<cmd>Telescope lsp_implementations<cr>', opts)
+    vim.keymap.set('n', 'gs', '<cmd>Telescope lsp_document_symbols<cr>', opts)
 
     vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
     vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
