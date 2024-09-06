@@ -57,6 +57,38 @@ Before proceeding with the installation, ensure that the following dependencies 
      pip3 install pynvim
      ```
 
+- **Ripgrep and FZF**:
+  - **Ripgrep**:
+    - **Ubuntu/Debian**:
+      ```bash
+      sudo apt install ripgrep
+      ```
+    - **MacOS**:
+      ```bash
+      brew install ripgrep
+      ```
+  - **FZF** (for enhanced fuzzy search capabilities):
+    - **Ubuntu/Debian**:
+      ```bash
+      sudo apt install fzf
+      ```
+    - **MacOS**:
+      ```bash
+      brew install fzf
+      ```
+
+- **LazyGit**:
+  - **Ubuntu/Debian**:
+    ```bash
+    sudo add-apt-repository ppa:lazygit-team/release
+    sudo apt update
+    sudo apt install lazygit
+    ```
+  - **MacOS**:
+    ```bash
+    brew install lazygit
+    ```
+
 ## Installation Steps
 
 Follow the steps below to install this configuration on your system:
