@@ -18,8 +18,25 @@ map('n', '<leader>fc', function()
   require('telescope.builtin').grep_string()
 end, { desc = 'Find word under cursor' })
 map('n', '<leader>fo', '<cmd>Telescope oldfiles<CR>')
-map('n', '<leader>fw', '<cmd>Telescope live_grep<CR>')
+-- map('n', '<leader>fw', '<cmd>Telescope live_grep<CR>')
+map('n', '<leader>fw', function()
+  require('telescope.builtin').live_grep {
+    -- After search, send results to quickfix
+    attach_mappings = function(_, map)
+      map('i', '<C-q>', function(prompt_bufnr)
+        require('telescope.actions').send_to_qflist(prompt_bufnr)
+        vim.cmd 'copen'
+      end)
+      return true
+    end,
+  }
+end, { desc = 'Live grep with quickfix' })
+-- quickfix list --
 map('n', '<leader>gt', '<cmd>Telescope git_status<CR>')
+map('n', '<leader>n', '<cmd>cnext<CR>', { desc = 'Next quickfix item' })
+map('n', '<leader>p', '<cmd>cprev<CR>', { desc = 'Previous quickfix item' })
+map('n', '<leader>lo', '<cmd>copen<CR>', { desc = 'Open quickfix list' })
+map('n', '<leader>lc', '<cmd>cclose<CR>', { desc = 'Close quickfix list' })
 
 -- Comment.nvim
 map('n', '<leader>/', 'gcc', { remap = true })
@@ -160,6 +177,9 @@ vim.opt.relativenumber = true -- sets vim.opt.relativenumber vim.opt.number = tr
 vim.opt.spell = false -- sets vim.opt.spell
 vim.opt.signcolumn = 'auto' -- sets vim.opt.signcolumn to auto
 vim.opt.wrap = false -- sets vim.opt.wrap
+-- vim.opt.iskeyword:remove { '-', ',', '_' }
+vim.opt.iskeyword:remove '_'
+-- some_test_word
 
 vim.g.matchup_matchparen_nomode = 'i' -- set mode to not match parenthesis in matchup
 
