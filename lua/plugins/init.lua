@@ -461,6 +461,25 @@ local plugins = {
       require('which-key').setup {}
     end,
   },
+  {
+    'oysandvik94/curl.nvim',
+    cmd = { 'CurlOpen' },
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    keys = {
+      { '<leader>cx', '<cmd>CurlOpen<cr>', 'Open a new local curl requests' },
+      { '<leader>co', '<cmd>CurlOpenGlobal<cr>' },
+      { '<leader>csc', '<cmd>CurlCreateScopedCollection<cr>' },
+      { '<leader>cgc', '<cmd>CurlCreateGlobalCollection<cr>' },
+      { '<leader>fsc', '<cmd>CurlPickScopedCollection<cr>' },
+      { '<leader>fgc', '<cmd>CurlPickGlobalCollection<cr>' },
+    },
+    config = function()
+      local curl = require 'curl'
+      curl.setup {}
+    end,
+  },
 }
 
 require('lazy').setup(plugins, require 'lazy_config')

@@ -10,9 +10,10 @@
   "cmp-nvim-lua": { "branch": "main", "commit": "f12408bdb54c39c23e67cab726264c10db33ada8" },
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "cmp_luasnip": { "branch": "master", "commit": "98d9cb5c2c38532bd9bdb481067b20fea8f32e90" },
+  "codecompanion.nvim": { "branch": "main", "commit": "e54ec7499513055077ce20f81d95de7ae60f2537" },
   "conform.nvim": { "branch": "master", "commit": "363243c03102a531a8203311d4f2ae704c620d9b" },
   "copilot.vim": { "branch": "release", "commit": "87038123804796ca7af20d1b71c3428d858a9124" },
-  "dressing.nvim": { "branch": "master", "commit": "42d767b04c50a6966c9633e3968bc65c0c2f2bfc" },
+  "curl.nvim": { "branch": "main", "commit": "fe07677a2a24bc8793b90fa2c0da626ea6c9e47d" },
   "friendly-snippets": { "branch": "main", "commit": "efff286dd74c22f731cdec26a70b46e5b203c619" },
   "gitsigns.nvim": { "branch": "main", "commit": "8974fd397e854bfa13a5130dc32ee357dbade276" },
   "gruvbox-material": { "branch": "master", "commit": "c2e6a8af06b1278a3032c166d77f171cfc85cd7b" },
@@ -39,5 +40,6 @@
   "toggleterm.nvim": { "branch": "main", "commit": "50ea089fc548917cc3cc16b46a8211833b9e3c7c" },
   "tokyonight.nvim": { "branch": "main", "commit": "dca4adba7dc5f09302a00b0e76078d54d82d2658" },
   "vim-go": { "branch": "master", "commit": "6adc82bfef7f9a4b0db78065ae51b8ebb145c355" },
-  "vim-matchup": { "branch": "master", "commit": "aca23ce53ebfe34e02c4fe07e29e9133a2026481" }
+  "vim-matchup": { "branch": "master", "commit": "aca23ce53ebfe34e02c4fe07e29e9133a2026481" },
+  "which-key.nvim": { "branch": "main", "commit": "ce741eb559c924d72e3a67d2189ad3771a231414" }
 }
