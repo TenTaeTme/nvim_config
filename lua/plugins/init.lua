@@ -429,6 +429,7 @@ local plugins = {
       'nvim-lua/plenary.nvim',
       'nvim-treesitter/nvim-treesitter',
     },
+    keys = { { '<leader>cc', '<cmd>CodeCompanionChat Toggle<cr>' } },
     config = function()
       require('codecompanion').setup {
         strategies = {
