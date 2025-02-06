@@ -132,13 +132,12 @@ local plugins = {
       require('mason-lspconfig').setup {
         ensure_installed = {
           'lua_ls',
-          'tsserver',
+          'ts_ls',
           -- 'ttags',
           'intelephense',
           'tailwindcss',
           'cssls',
           'html',
-          'tsserver',
           'jsonls',
           -- 'prettierd',
           -- 'prettier',
@@ -390,6 +389,39 @@ local plugins = {
     'folke/todo-comments.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = {},
+  },
+  {
+    'yacineMTB/dingllm.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      local system_prompt =
+        'You should replace the code that you are sent, only following the comments. Do not talk at all. Only output valid code. Do not provide any backticks that surround the code. Any comment that is asking you for something should be removed after you satisfy them. Other comments should left alone. Do not output backticks'
+      local helpful_prompt = 'You are a helpful assistant. What I have sent are my notes so far.'
+
+      local dingllm = require 'dingllm'
+
+      -- Qwen-2.5:7B configuration
+      local function qwen_replace()
+        dingllm.invoke_llm_and_stream_into_editor({
+          url = 'http://host.docker.internal:11434', -- Use the correct URL for your Ollama server
+          model = 'qwen2.5:7b', -- Use the exact model name
+          system_prompt = system_prompt,
+          replace = true,
+        }, nil, dingllm.handle_openai_spec_data) -- Use nil for curl_args since we are not using OpenAI API
+      end
+
+      local function qwen_help()
+        dingllm.invoke_llm_and_stream_into_editor({
+          url = 'http://host.docker.internal:11434', -- Use the correct URL for your Ollama server
+          model = 'qwen2.5:7b', -- Use the exact model name
+          system_prompt = helpful_prompt,
+          replace = false,
+        }, nil, dingllm.handle_openai_spec_data) -- Use nil for curl_args since we are not using OpenAI API
+      end
+
+      vim.keymap.set({ 'n', 'v' }, '<leader>r', qwen_replace, { desc = 'Qwen-2.5 replace mode' })
+      vim.keymap.set({ 'n', 'v' }, '<leader>h', qwen_help, { desc = 'Qwen-2.5 help mode' })
+    end,
   },
 }
 
