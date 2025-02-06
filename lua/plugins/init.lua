@@ -468,12 +468,13 @@ local plugins = {
       'nvim-lua/plenary.nvim',
     },
     keys = {
-      { '<leader>cx', '<cmd>CurlOpen<cr>', 'Open a new local curl requests' },
-      { '<leader>co', '<cmd>CurlOpenGlobal<cr>' },
-      { '<leader>csc', '<cmd>CurlCreateScopedCollection<cr>' },
-      { '<leader>cgc', '<cmd>CurlCreateGlobalCollection<cr>' },
-      { '<leader>fsc', '<cmd>CurlPickScopedCollection<cr>' },
-      { '<leader>fgc', '<cmd>CurlPickGlobalCollection<cr>' },
+      { '<leader>cx', '<cmd>CurlOpen<cr>', desc = 'Open a new local curl requests' },
+      { '<leader>co', '<cmd>CurlOpenGlobal<cr>', desc = 'Open a new global curl requests' },
+      { '<leader>cc', '<cmd>CurlCreateScopedCollection<cr>', desc = 'Create a new scoped collection' },
+      { '<leader>csc', '<cmd>CurlCreateScopedCollection<cr>', desc = 'Create a new scoped collection' },
+      { '<leader>cgc', '<cmd>CurlCreateGlobalCollection<cr>', desc = 'Create a new global collection' },
+      { '<leader>fsc', '<cmd>CurlPickScopedCollection<cr>', desc = 'Pick a scoped collection' },
+      { '<leader>fgc', '<cmd>CurlPickGlobalCollection<cr>', desc = 'Pick a global collection' },
     },
     config = function()
       local curl = require 'curl'
