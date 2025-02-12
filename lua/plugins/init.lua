@@ -481,6 +481,60 @@ local plugins = {
       curl.setup {}
     end,
   },
+  {
+    'folke/trouble.nvim',
+    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    cmd = 'Trouble',
+    keys = {
+      {
+        '<leader>xx',
+        '<cmd>Trouble diagnostics toggle<cr>',
+        desc = 'Diagnostics (Trouble)',
+      },
+      {
+        '<leader>xX',
+        '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
+        desc = 'Buffer Diagnostics (Trouble)',
+      },
+      {
+        '<leader>cs',
+        '<cmd>Trouble symbols toggle focus=false<cr>',
+        desc = 'Symbols (Trouble)',
+      },
+      {
+        '<leader>cl',
+        '<cmd>Trouble lsp toggle focus=false win.position=right<cr>',
+        desc = 'LSP Definitions / references / ... (Trouble)',
+      },
+      {
+        '<leader>xL',
+        '<cmd>Trouble loclist toggle<cr>',
+        desc = 'Location List (Trouble)',
+      },
+      {
+        '<leader>xQ',
+        '<cmd>Trouble qflist toggle<cr>',
+        desc = 'Quickfix List (Trouble)',
+      },
+    },
+  },
+  {
+    'mbbill/undotree',
+    cmd = 'UndotreeToggle', -- Command to trigger the plugin
+    keys = {
+      {
+        '<leader>u', -- Your preferred hotkey
+        '<cmd>UndotreeToggle<cr>',
+        desc = 'Toggle Undotree',
+      },
+    },
+    config = function()
+      -- Configuration options (equivalent to opts for plugins that use vim.g)
+      vim.g.undotree_SetFocusWhenToggle = 1
+      vim.g.undotree_WindowLayout = 2 -- 2 = vertical split, 3 = horizontal
+      vim.g.undotree_ShortIndicators = 1 -- Compact view
+    end,
+  },
 }
 
 require('lazy').setup(plugins, require 'lazy_config')
