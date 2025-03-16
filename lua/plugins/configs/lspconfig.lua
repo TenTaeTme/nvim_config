@@ -126,7 +126,7 @@ lspconfig.lua_ls.setup {
   },
 }
 
-local servers = { 'ts_ls', 'html', 'cssls', 'gopls', 'jsonls', 'intelephense', 'tailwindcss' }
+local servers = { 'ts_ls', 'templ', 'cssls', 'gopls', 'json-lsp', 'intelephense', 'tailwindcss' }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
