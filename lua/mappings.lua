@@ -184,10 +184,14 @@ vim.opt.iskeyword:remove '_'
 vim.g.matchup_matchparen_nomode = 'i' -- set mode to not match parenthesis in matchup
 
 -- Diagnostic signs
-vim.fn.sign_define('DiagnosticSignError', { text = ' ', texthl = 'DiagnosticSignError' })
-vim.fn.sign_define('DiagnosticSignWarn', { text = ' ', texthl = 'DiagnosticSignWarn' })
-vim.fn.sign_define('DiagnosticSignInfo', { text = ' ', texthl = 'DiagnosticSignInfo' })
-vim.fn.sign_define('DiagnosticSignHint', { text = '󰌵', texthl = 'DiagnosticSignHint' })
+vim.diagnostic.config {
+  signs = {
+    [vim.diagnostic.severity.ERROR] = { text = ' ' },
+    [vim.diagnostic.severity.WARN] = { text = ' ' },
+    [vim.diagnostic.severity.INFO] = { text = ' ' },
+    [vim.diagnostic.severity.HINT] = { text = '󰌵' },
+  },
+}
 
 -- Window navigation
 map('n', '<C-l>', '<C-w>l', { desc = 'Move to right window' })

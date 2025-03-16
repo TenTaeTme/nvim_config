@@ -39,7 +39,7 @@ vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
 })
 
 vim.api.nvim_create_user_command('MasonInstallAll', function()
-  vim.cmd 'MasonInstall css-lsp html-lsp lua-language-server typescript-language-server stylua prettier prettierd emmet-ls goimports gofumpt iferr delve docker-compose-language-service dockerfile-language-server eslint-lsp gopls gomodifytags hadolint impl intelephense js-debug-adapter json-lsp selene tailwindcss-language-server'
+  vim.cmd 'MasonInstall css-lsp html-lsp lua-language-server typescript-language-server templ stylua prettier prettierd emmet-ls goimports gofumpt iferr delve docker-compose-language-service dockerfile-language-server eslint-lsp gopls gomodifytags hadolint impl intelephense js-debug-adapter json-lsp selene tailwindcss-language-server'
 end, {})
 
 -- Map ESC to clear search highlights

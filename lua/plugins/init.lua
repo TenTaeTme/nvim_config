@@ -138,7 +138,6 @@ local plugins = {
           'tailwindcss',
           'cssls',
           'templ',
-          'json-lsp',
           -- 'prettierd',
           -- 'prettier',
           'gopls',
