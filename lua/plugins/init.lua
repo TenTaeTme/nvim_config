@@ -128,7 +128,7 @@ local plugins = {
     config = function()
       require('lualine').setup {
         options = {
-          theme = 'gruvbox-material',
+          theme = 'iceberg_dark',
           section_separators = { '🐧', '🐧' },
           component_separators = { '🐧', '🐧' },
         },
