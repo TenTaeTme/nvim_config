@@ -239,7 +239,19 @@ local plugins = {
     'numToStr/Comment.nvim',
     opts = function()
       return {
-        -- добавить другие опции здесь
+        -- mappings = {
+        --   basic = true, -- Enable basic mappings
+        --   extra = true, -- Enable extra mappings
+        --   extended = false, -- Enable extended mappings
+        -- },
+        -- toggler = {
+        --   line = 'gcc', -- Line-comment toggle keymap
+        --   block = 'gbc', -- Block-comment toggle keymap
+        -- },
+        -- opleader = {
+        --   line = 'gc', -- Line-comment keymap
+        --   block = 'gb', -- Block-comment keymap
+        -- },
         pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
       }
     end,
